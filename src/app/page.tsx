@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import logo from "https://github.com/mrgraciz123/Null2One/blob/master/public/assets/logo.png";
 import { 
  ShieldCheck, 
  ArrowRight, 
@@ -27,12 +26,13 @@ export default function Home() {
  <header className="sticky top-0 z-50 bg-background border-b border-border">
  <div className="container mx-auto px-6 h-14 flex justify-between items-center">
  <div className="flex items-center gap-3">
- <Image
-  src={logo}
+<Image
+  src="/assets/logo.png"
   alt="AscendID"
   width={24}
   height={24}
   className="rounded-sm"
+  priority
 />
  <span className="text-sm font-semibold tracking-wide text-foreground font-heading">
  AscendID
