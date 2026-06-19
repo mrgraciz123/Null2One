@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import logo from "@/assets/logo.png";
+import logo from "https://github.com/mrgraciz123/Null2One/blob/master/public/assets/logo.png";
 import { 
  ShieldCheck, 
  ArrowRight, 
