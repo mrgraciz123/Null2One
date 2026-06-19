@@ -33,7 +33,7 @@ Building India's Talent Verification Infrastructure
 ---
 
 <p align="center">
-  <img src="./public/assets/banner.png" width="100%" alt="AscendID Banner" />
+  <img src="./public/assets/Banner.png" width="100%" alt="AscendID Banner" />
 </p>
 
 ---
