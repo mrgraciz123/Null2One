@@ -101,7 +101,7 @@ export class OpportunityService {
           matchScore: dynamicScore,
           applyLink: job.job_apply_link || null,
           salary: job.job_min_salary ? `$${job.job_min_salary} - $${job.job_max_salary}` : 'Competitive',
-          description: job.job_description ? job.job_description.substring(0, 150) + '...' : 'See full details on the application page.'
+          description: job.job_description ? String(job.job_description).substring(0, 150) + '...' : 'See full details on the application page.'
         };
       });
 

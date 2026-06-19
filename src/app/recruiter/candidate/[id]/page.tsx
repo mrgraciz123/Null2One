@@ -85,7 +85,7 @@ export default function CandidateProfile({ params }: { params: Promise<{ id: str
  <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
  <Avatar className="w-32 h-32 border-4 border-background shadow-xl">
  <AvatarImage src={student.avatar} alt={student.name} />
- <AvatarFallback className="text-4xl bg-secondary">{student.name.substring(0, 2)}</AvatarFallback>
+ <AvatarFallback className="text-4xl bg-secondary">{(student.name || "ST").substring(0, 2).toUpperCase()}</AvatarFallback>
  </Avatar>
  
  <div className="flex-1 space-y-4">

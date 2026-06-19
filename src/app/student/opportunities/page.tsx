@@ -122,7 +122,7 @@ export default function OpportunitiesPage() {
  <div className="shrink-0 flex flex-col items-center gap-3">
  <Avatar className="w-16 h-16 border-2 border-background shadow-lg group-hover:scale-105 transition-transform duration-300">
  <AvatarImage src={opp.logo} alt={opp.company} className="object-contain p-2 bg-white" />
- <AvatarFallback className="bg-secondary text-white text-xl">{opp.company.substring(0, 2)}</AvatarFallback>
+ <AvatarFallback className="bg-secondary text-white text-xl">{(opp.company || "CO").substring(0, 2).toUpperCase()}</AvatarFallback>
  </Avatar>
  <div className="flex flex-col items-center">
  <Badge className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20 ">

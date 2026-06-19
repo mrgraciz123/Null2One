@@ -110,7 +110,7 @@ export default function RecruiterDashboard() {
  <div className="shrink-0 flex flex-col items-center gap-3">
  <Avatar className="w-20 h-20 border-2 border-background shadow-lg">
  <AvatarImage src={candidate.avatar} alt={candidate.name} />
- <AvatarFallback className="bg-secondary text-white text-xl">{candidate.name.substring(0, 2)}</AvatarFallback>
+ <AvatarFallback className="bg-secondary text-white text-xl">{(candidate.name || "CD").substring(0, 2).toUpperCase()}</AvatarFallback>
  </Avatar>
  </div>
 

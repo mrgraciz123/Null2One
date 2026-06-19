@@ -11,11 +11,11 @@ export class StudentService {
  const data = docSnap.data();
  return {
  id: data.uid,
- name: data.fullName || "Student",
- university: data.institution || "Pending Setup",
- major: data.degree || "Pending Setup",
+ name: data.fullName || data.displayName || "Anonymous Student",
+ university: data.institution || "Unknown Institution",
+ major: data.degree || "No Degree",
  graduationYear: data.graduationYear || new Date().getFullYear().toString(),
- avatar: `https://i.pravatar.cc/150?u=${data.uid}`,
+ avatar: data.photoURL || `https://i.pravatar.cc/150?u=${data.uid}`,
  trustScore: 0, // Calculated dynamically elsewhere
  skills: data.skills || [],
  isDigiLockerConnected: data.isDigiLockerConnected || false,
