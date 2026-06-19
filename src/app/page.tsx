@@ -2,6 +2,8 @@
 
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import Image from "next/image";
+import logo from "@/assets/logo.png";
 import { 
  ShieldCheck, 
  ArrowRight, 
@@ -25,9 +27,13 @@ export default function Home() {
  <header className="sticky top-0 z-50 bg-background border-b border-border">
  <div className="container mx-auto px-6 h-14 flex justify-between items-center">
  <div className="flex items-center gap-3">
- <div className="w-5 h-5 bg-primary rounded-sm flex items-center justify-center">
- <span className="text-[10px] font-bold text-white leading-none">A</span>
- </div>
+ <Image
+  src={logo}
+  alt="AscendID"
+  width={24}
+  height={24}
+  className="rounded-sm"
+/>
  <span className="text-sm font-semibold tracking-wide text-foreground font-heading">
  AscendID
  </span>
