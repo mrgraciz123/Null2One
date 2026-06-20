@@ -207,7 +207,7 @@ Recruiter Verification
 
 ## 🏆 Null to One Hackathon 2026
 
-**Team Name:** Bit Bandits
+**Team Name:** Tech_Lababdar
 
 **Project:** AscendID
 
