@@ -185,23 +185,23 @@ Recruiter Verification
 
 ### Landing Page
 
-![Landing](./public/screenshots/landing.png)
+![Landing](public/assets/Landing.png)
 
 ### Student Dashboard
 
-![Dashboard](./public/screenshots/dashboard.png)
+![Dashboard](public/assets/Dashboard.png)
 
 ### Proof Vault
 
-![Proof Vault](./public/screenshots/proof-vault.png)
+![Proof Vault](public/assets/ProofVault.png)
 
 ### Opportunity Engine
 
-![Opportunities](./public/screenshots/opportunities.png)
+![Opportunities](public/assets/Opportunities.png)
 
 ### Recruiter Dashboard
 
-![Recruiter](./public/screenshots/recruiter.png)
+![Recruiter](public/assets/Recruiter.png)
 
 ---
 
