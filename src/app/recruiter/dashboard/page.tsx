@@ -103,14 +103,19 @@ export default function RecruiterDashboard() {
  </div>
 
  {/* Candidate List */}
- {candidates.map((candidate) => (
+ {(candidates || []).filter(c => {
+    if (!c || !c.name || c.name === "Anonymous Student") {
+      console.warn("Malformed candidate record detected: missing or invalid name.", c?.id || "unknown");
+    }
+    return c;
+  }).map((candidate) => (
  <Card key={candidate.id} className="surface-panel hover: transition-colors">
  <CardContent className="p-6">
  <div className="flex flex-col md:flex-row gap-6">
  <div className="shrink-0 flex flex-col items-center gap-3">
  <Avatar className="w-20 h-20 border-2 border-background shadow-lg">
  <AvatarImage src={candidate.avatar} alt={candidate.name} />
- <AvatarFallback className="bg-secondary text-white text-xl">{(candidate.name || "CD").substring(0, 2).toUpperCase()}</AvatarFallback>
+ <AvatarFallback className="bg-secondary text-white text-xl">{(candidate?.name || candidate?.fullName || candidate?.displayName || "AN").substring(0, 2).toUpperCase()}</AvatarFallback>
  </Avatar>
  </div>
 
@@ -150,7 +155,7 @@ export default function RecruiterDashboard() {
  <div>
  <p className="text-sm text-muted-foreground font-medium mb-2">Verified Skills</p>
  <div className="flex flex-wrap gap-2">
- {candidate.skills.map((skill: string) => (
+ {(candidate.skills || []).map((skill: string) => (
  <Badge key={skill} variant="secondary" className="bg-white/5 text-white border-white/10">
  {skill}
  </Badge>

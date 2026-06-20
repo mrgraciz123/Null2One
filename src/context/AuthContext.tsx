@@ -97,9 +97,14 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
  await signInWithEmailAndPassword(auth, email, password);
  };
 
- const logout = async () => {
- await signOut(auth);
- };
+  const logout = async () => {
+    try {
+      await signOut(auth);
+    } catch (error) {
+      console.error("AuthContext: signOut failed:", error);
+      throw error;
+    }
+  };
 
  const value = {
  currentUser,

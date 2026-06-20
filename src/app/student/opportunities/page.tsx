@@ -115,14 +115,14 @@ export default function OpportunitiesPage() {
  </div>
  )}
 
- {opportunities.map((opp) => (
+ {(opportunities || []).map((opp) => (
  <Card key={opp.id} className="surface-panel hover: transition-all duration-300 group">
  <CardContent className="p-6">
  <div className="flex flex-col md:flex-row gap-6">
  <div className="shrink-0 flex flex-col items-center gap-3">
  <Avatar className="w-16 h-16 border-2 border-background shadow-lg group-hover:scale-105 transition-transform duration-300">
  <AvatarImage src={opp.logo} alt={opp.company} className="object-contain p-2 bg-white" />
- <AvatarFallback className="bg-secondary text-white text-xl">{(opp.company || "CO").substring(0, 2).toUpperCase()}</AvatarFallback>
+ <AvatarFallback className="bg-secondary text-white text-xl">{String(opp?.company || "CO").substring(0, 2).toUpperCase()}</AvatarFallback>
  </Avatar>
  <div className="flex flex-col items-center">
  <Badge className="bg-indigo-500/10 text-indigo-400 border-indigo-500/20 ">
@@ -157,7 +157,7 @@ export default function OpportunitiesPage() {
  </div>
 
  <div className="flex flex-wrap gap-2">
- {opp.tags.map((tag: string) => (
+ {(opp.tags || []).map((tag: string) => (
  <Badge key={tag} variant="secondary" className="bg-white/5 hover:bg-white/10 text-white border-white/10">
  {tag}
  </Badge>

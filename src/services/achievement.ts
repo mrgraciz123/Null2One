@@ -22,9 +22,22 @@ export class AchievementService {
  const querySnapshot = await getDocs(q);
  
  const achievements: Achievement[] = [];
- querySnapshot.forEach((doc) => {
- achievements.push({ id: doc.id, ...doc.data() } as Achievement);
- });
+  querySnapshot.forEach((doc) => {
+  const data = doc.data();
+  achievements.push({
+  id: doc.id,
+  studentId: data.studentId || studentId,
+  title: data.title || "Untitled Achievement",
+  category: data.category || data.type || "Certificate",
+  type: data.type || data.category || "Certificate",
+  issuer: data.issuer || "Unknown Issuer",
+  impact: data.impact || "",
+  date: data.date || new Date().toISOString().split('T')[0],
+  verified: data.verified || false,
+  proofUrl: data.proofUrl || "",
+  createdAt: data.createdAt || null,
+  } as unknown as Achievement);
+  });
  return achievements;
  } catch (error) {
  console.error("Error fetching achievements:", error);

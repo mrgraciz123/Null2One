@@ -52,7 +52,7 @@ export class OpportunityService {
         cachedData = cacheSnap.data();
         const fetchedAt = cachedData.fetchedAt || 0;
         if (now - fetchedAt < CACHE_TTL_MS && cachedData.opportunities && cachedData.opportunities.length > 0) {
-          return cachedData.opportunities; // Return fresh cache
+          return cachedData.opportunities || []; // Return fresh cache
         }
       }
 
@@ -81,12 +81,12 @@ export class OpportunityService {
 
       if (rawJobs.length === 0) {
         // Fallback if no jobs returned
-        if (cachedData && cachedData.opportunities?.length > 0) return cachedData.opportunities;
+        if (cachedData && cachedData.opportunities?.length > 0) return cachedData.opportunities || [];
         return this.getFallbackOpportunities(trustScore);
       }
 
       // 5. Map JSearch results to our format
-      const formattedJobs = rawJobs.slice(0, 10).map((job: any) => {
+      const formattedJobs = (rawJobs || []).slice(0, 10).map((job: any) => {
         const dynamicScore = Math.max(10, Math.min(99, Math.round(trustScore * 0.9 + Math.random() * 10)));
         const matchReason = `Your background in ${degreeStr} and verified trust score of ${trustScore} makes you a strong candidate for this ${job.job_employment_type || 'full-time'} role.`;
         
@@ -121,7 +121,7 @@ export class OpportunityService {
       try {
         const cacheSnap = await getDoc(doc(db, "opportunities_cache", studentId));
         if (cacheSnap.exists() && cacheSnap.data().opportunities?.length > 0) {
-          return cacheSnap.data().opportunities;
+          return cacheSnap.data().opportunities || [];
         }
       } catch (e) {
         // ignore fallback errors
@@ -133,9 +133,10 @@ export class OpportunityService {
   }
 
   private static getFallbackOpportunities(trustScore: number) {
-    return OPPORTUNITIES_DB.map(opp => ({
+    return (OPPORTUNITIES_DB || []).map(opp => ({
       ...opp,
-      matchScore: Math.max(10, Math.round(opp.baseScore * (trustScore / 100))),
+      tags: opp.tags || [],
+      matchScore: Math.max(10, Math.round((opp.baseScore || 50) * (trustScore / 100))),
       salary: 'Competitive',
       applyLink: '#',
       description: 'We are looking for verified talent to join our teams.'

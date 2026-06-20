@@ -48,7 +48,7 @@ export default function CandidateProfile({ params }: { params: Promise<{ id: str
  );
  }
 
- const verifiedAchievements = achievements.filter(a => a.verified);
+ const verifiedAchievements = (achievements || []).filter(a => a?.verified);
 
  return (
  <div className="space-y-8 animate-in fade-in duration-500 max-w-5xl mx-auto">
@@ -85,7 +85,7 @@ export default function CandidateProfile({ params }: { params: Promise<{ id: str
  <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
  <Avatar className="w-32 h-32 border-4 border-background shadow-xl">
  <AvatarImage src={student.avatar} alt={student.name} />
- <AvatarFallback className="text-4xl bg-secondary">{(student.name || "ST").substring(0, 2).toUpperCase()}</AvatarFallback>
+ <AvatarFallback className="text-4xl bg-secondary">{(student?.name || student?.fullName || student?.displayName || "ST").substring(0, 2).toUpperCase()}</AvatarFallback>
  </Avatar>
  
  <div className="flex-1 space-y-4">
@@ -116,7 +116,7 @@ export default function CandidateProfile({ params }: { params: Promise<{ id: str
  </div>
 
  <div className="flex flex-wrap gap-2 pt-2">
- {student.skills.map((skill: string) => (
+ {(student.skills || []).map((skill: string) => (
  <Badge key={skill} variant="secondary" className="bg-white/5 hover:bg-white/10 text-white border-white/10">
  {skill}
  </Badge>
@@ -169,7 +169,7 @@ export default function CandidateProfile({ params }: { params: Promise<{ id: str
  Fetched directly from government databases (DigiLocker). 100% authentic.
  </p>
  <div className="grid gap-4 md:grid-cols-2">
- {records.map(record => (
+ {(records || []).map(record => (
  <Card key={record.id} className="surface-panel hover: transition-colors">
  <CardContent className="p-6">
  <div className="flex justify-between items-start">
@@ -196,7 +196,7 @@ export default function CandidateProfile({ params }: { params: Promise<{ id: str
  All records below have been cryptographically verified directly with the issuing institution.
  </p>
 
- {verifiedAchievements.map(ach => (
+ {(verifiedAchievements || []).map(ach => (
  <Card key={ach.id} className="surface-panel hover: transition-colors">
  <CardContent className="p-6">
  <div className="flex flex-col md:flex-row justify-between gap-4">

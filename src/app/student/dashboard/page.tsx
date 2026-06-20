@@ -119,7 +119,7 @@ export default function StudentDashboard() {
  <Trophy className="h-5 w-5 text-indigo-400" />
  </CardHeader>
  <CardContent>
- <div className="text-4xl font-bold text-white">{achievements.filter(a => a.verified).length}</div>
+ <div className="text-4xl font-bold text-white">{(achievements || []).filter(a => a?.verified).length}</div>
  <p className="text-sm text-muted-foreground mt-2">
  Across academics & internships
  </p>
@@ -150,7 +150,7 @@ export default function StudentDashboard() {
  <CardDescription>Imported securely via DigiLocker</CardDescription>
  </CardHeader>
  <CardContent className="space-y-4">
- {records.map(record => (
+ {(records || []).map(record => (
  <div key={record.id as string} className="flex justify-between items-center p-3 rounded-lg bg-background/50 border border-border/30">
  <div>
  <p className="font-semibold text-white">{record.type}</p>
@@ -173,11 +173,16 @@ export default function StudentDashboard() {
  <CardDescription>AI recommendations based on your Trust Score</CardDescription>
  </CardHeader>
  <CardContent className="space-y-4">
- {opportunities.slice(0, 3).map(opp => (
+ {(opportunities || []).slice(0, 3).map(opp => (
  <div key={opp.id as string} className="flex items-center justify-between p-3 rounded-lg border border-border/30 hover: transition-colors group cursor-pointer">
  <div className="flex items-center gap-3">
  <div className="w-10 h-10 rounded-md bg-white flex items-center justify-center p-1 shrink-0 overflow-hidden relative">
- <Image src={opp.logo} alt={opp.company} fill sizes="40px" className="object-contain" />
+ <img 
+ src={opp.logo || "/default-company.png"} 
+ alt={opp.company} 
+ className="object-contain w-full h-full" 
+ onError={(e) => { e.currentTarget.src = "/default-company.png"; }}
+ />
  </div>
  <div>
  <p className="font-medium text-white group-hover:text-primary transition-colors">{opp.title}</p>

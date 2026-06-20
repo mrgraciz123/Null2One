@@ -48,8 +48,8 @@ export default function PassportPage() {
  );
  }
 
- const verifiedAchievements = achievements.filter(a => a.verified);
- const pendingAchievements = achievements.filter(a => !a.verified);
+  const verifiedAchievements = (achievements || []).filter(a => a?.verified);
+  const pendingAchievements = (achievements || []).filter(a => !a?.verified);
 
  return (
  <div className="space-y-8 animate-in fade-in duration-500 max-w-5xl mx-auto">
@@ -79,7 +79,7 @@ export default function PassportPage() {
  <div className="flex flex-col md:flex-row gap-8 items-start md:items-center">
  <Avatar className="w-32 h-32 border-4 border-background shadow-xl">
  <AvatarImage src={student.avatar} alt={student.name} />
- <AvatarFallback className="text-4xl bg-secondary">{(student.name || "ST").substring(0, 2).toUpperCase()}</AvatarFallback>
+ <AvatarFallback className="text-4xl bg-secondary">{String(student?.name || "ST").substring(0, 2).toUpperCase()}</AvatarFallback>
  </Avatar>
  
  <div className="space-y-2">
@@ -125,7 +125,7 @@ export default function PassportPage() {
  </p>
  </div>
  <div className="grid gap-4 md:grid-cols-2">
- {records.map(record => (
+ {(records || []).map(record => (
   <div key={record.id} className="flex justify-between items-center p-3 rounded-lg bg-background/50 border border-border/30">
   <div>
   <p className="font-semibold text-white">{record.type}</p>
@@ -143,7 +143,7 @@ export default function PassportPage() {
  </TabsContent>
 
  <TabsContent value="verified" className="mt-6 space-y-4">
- {verifiedAchievements.map(ach => (
+ {(verifiedAchievements || []).map(ach => (
  <Card key={ach.id} className="surface-panel hover: transition-colors">
  <CardContent className="p-6">
  <div className="flex flex-col md:flex-row justify-between gap-4">
@@ -173,7 +173,7 @@ export default function PassportPage() {
  </TabsContent>
 
  <TabsContent value="pending" className="mt-6 space-y-4">
- {achievements.map(ach => (
+ {(achievements || []).map(ach => (
   <div key={ach.id} className="flex gap-4 p-4 rounded-lg bg-background/50 border border-border/30 relative overflow-hidden group">
  <div className="flex flex-col md:flex-row justify-between gap-4">
  <div className="flex-1 space-y-2">

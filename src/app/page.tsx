@@ -191,8 +191,8 @@ export default function Home() {
  { label: "Academics", value: 98, color: "bg-success" },
  { label: "Projects", value: 85, color: "bg-primary" },
  { label: "Experience", value: 92, color: "bg-trust" },
- ].map((stat, i) => (
- <div key={i} className="w-full">
+ ].map((stat) => (
+ <div key={stat.label} className="w-full">
  <div className="flex justify-between items-end mb-1.5">
  <span className="text-[10px] text-muted-foreground font-bold uppercase">{stat.label}</span>
  <span className="text-xs text-white font-mono font-bold">{stat.value}%</span>
